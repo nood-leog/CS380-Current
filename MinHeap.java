@@ -3,7 +3,7 @@ package javadocExamples;
  * An implementation of a MinHeap.
  * <p>
  * Uses an array to store the keys.
- * @author User
+ * @author Alex Boyce
  *
  */
 public class MinHeap {
@@ -69,6 +69,10 @@ public class MinHeap {
 
     // - - - - Public Heap-Operations - - - -
 
+    /**
+     * Adds a key to the heap.
+     * @param key The key to be added.
+     */
     public void add(int key){
         if (getSize() >= getCapacity()){
             System.out.println("* * * Error: Heap is already full! * * *");
@@ -81,10 +85,18 @@ public class MinHeap {
         moveUp(size - 1);
     }
 
+    /**
+     * Returns the minimum key in the heap.
+     * @return the minimum key.
+     */
     public int getMin(){
         return keys[0];
     }
 
+    /**
+     * Removes then returns the new minimum key in the heap.
+     * @return min new minimum key
+     */
     public int removeMin(){
         int min = keys[0];
 
@@ -95,7 +107,11 @@ public class MinHeap {
 
         return min;
     }
-    
+
+    /**
+     * Returns a string representation of the heap.
+     * @return str string representation of the heap.
+     */
     public String toString(){
       String str = "";
       
@@ -105,7 +121,12 @@ public class MinHeap {
       
       return str;
     }
-    
+
+    /**
+     * A method that performs a complex calculation.
+     * @param value to be used in the calculation.
+     * @return Result of the complex calculation.
+     */
     public int complexCalculation(int value) {
     	//Hint: this is a silly method that has no
     	//real purpose.
