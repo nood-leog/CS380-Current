@@ -13,5 +13,6 @@ public class sample
         System.out.println("I will merge this change with the main branch!");
 	System.out.println("I wrote this line in nano!")
 	System.out.println("This is another commit! :)")
+	System.out.println("I think this will be the last commit")
     }
 }
