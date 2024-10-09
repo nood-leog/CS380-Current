@@ -131,10 +131,14 @@ class Node{
 	   a method to find the node in the tree
 	   with a largest key
 	   */
-	   public int getMax(Node root){
-         //implement in here
-
+	   public int getMax(Node root) {
+		   while (root.right != null) {
+			   root = root.right;
+		   }
+		   return root.value;
 	   }
+	   //Commit 6
+
 	   
 	   
 	   
