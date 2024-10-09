@@ -84,14 +84,16 @@ class Node{
 	   /*
 	   post-order traversal
 	   */
-	  
-	   public void postOrderTraversal(Node root){
-         //implement in here
-		   
-	   }
-	   
-	   
-	   
+		public void postOrderTraversal(Node root) {
+			if (root != null) {
+				postOrderTraversal(root.left);
+				postOrderTraversal(root.right);
+				System.out.print(root.value + " ");
+			}
+		}
+	   //Commit 3
+
+
 	   /*
 	   a method to find the node in the tree
 	   with a specific value
