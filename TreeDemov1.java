@@ -118,11 +118,13 @@ class Node{
 	   a method to find the node in the tree
 	   with a smallest key
 	   */
-	   public int getMin(Node root){
-         //implement in here
-	      
+	   public int getMin(Node root) {
+		   while (root.left != null) {
+			   root = root.left;
+		   }
+		   return root.value;
 	   }
-	  
+	  //Commit 5
 	  
 	  
 	   /*
