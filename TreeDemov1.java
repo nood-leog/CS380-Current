@@ -70,9 +70,14 @@ class Node{
 	   /*
 	   in-order traversal
 	   */
-	   public void inOrderTraversal(Node root){
-	      //implement in here
+	   public void inOrderTraversal(Node root) {
+		   if (root != null) {
+			   inOrderTraversal(root.left);
+			   System.out.print(root.value + " ");
+			   inOrderTraversal(root.right);
+		   }
 	   }
+	   //Commit 2
 	   
 	   
 	   
