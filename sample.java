@@ -11,8 +11,8 @@ public class sample
         System.out.println("Its objective is to learn how pull requests work within git!");
         System.out.println("With any luck, this branch will make sure that I git points for Quiz 2.3!");
         System.out.println("I will merge this change with the main branch!");
-	System.out.println("I wrote this line in nano!")
-	System.out.println("This is another commit! :)")
-	System.out.println("I think this will be the last commit")
+	System.out.println("I wrote this line in nano!");
+	System.out.println("This is another commit! :)");
+	System.out.println("I think this will be the last commit");
     }
 }
