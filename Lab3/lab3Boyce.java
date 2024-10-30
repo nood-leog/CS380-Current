@@ -1,4 +1,12 @@
+/**
+ * A gui program that allows the user to add, remove, update, and print a table of student grades from the connected sql database.
+ * @author Alex Boyce
+ * @since 2024-10-29
+ *
+ */
 
+
+//url, username, and password for the sql database can be found in the connect method on line 314
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -26,7 +34,9 @@ public class lab3Boyce
     private JPanel mainPanel;
     private JFrame mainFrame;
 
-
+    /**
+    * Main method to create the frame of the gui
+    * */
     public static void main(String[] args)
     {
 
@@ -34,6 +44,16 @@ public class lab3Boyce
 
     }
 
+    /**
+     * Constructor for the gui:
+     * Creates the frame and sets the size to 40% of the screen size
+     * Centers the frame
+     * Sets the content pane to the mainPanel
+     * Makes the frame visible
+     * Calls the connect method
+     * Adds action listeners to the buttons
+     *
+     */
     public lab3Boyce()
     {
         Connection connectInfo = connect(); //call connect method before drawing gui
@@ -59,7 +79,7 @@ public class lab3Boyce
         {
             public void actionPerformed(ActionEvent e)
             {
-                add();
+                add(connectInfo);
             }
         });
 
@@ -77,7 +97,7 @@ public class lab3Boyce
         {
             public void actionPerformed(ActionEvent e)
             {
-                update();
+                update(connectInfo);
             }
         });
 
@@ -92,79 +112,150 @@ public class lab3Boyce
 
     }
 
-    //gui helper methods-----------------------------------------------------------
+    //gui methods---------------------------------------------------
 
+    /**
+     * add method is called when the add button is clicked in the gui
+     * It gets the text from the text fields and assigns them to variables
+     * It then runs an SQL insert statement with the variables
+     * <p>
+     * If the statement is successful, it calls the populateTable method to refresh the table data
+     * If the statement fails, it prints an error message
+     *
+     * @param con The connection to the sql database passed when clicked
+     */
     //add method
-    public void add() {
-        System.out.println("add method called");
+    public void add(Connection con)
+    {
+        System.out.println("\nAdding entry...");
 
-        String[] enteredText = getTextFieldValues();
+        String[] enteredText = getTextFieldValues(); //get entered text from text fields in an array
 
+        //assign array values to variables
         String studentID = enteredText[0];
         String firstName = enteredText[1];
         String lastName = enteredText[2];
         String midtermGrade = enteredText[3];
 
-        //run sql insert statement
-        String query = "INSERT INTO 302_grades (studentID, firstName, lastName, midtermGrade) VALUES (?, ?, ?, ?)";
+        //run SQL insert statement with values from the array variables
+        String query = "INSERT INTO 302_grades (studentID, firstName, lastName, midtermGrade) VALUES ('" + studentID + "', '" + firstName + "', '" + lastName + "', '" + midtermGrade + "')";
 
-        try (Connection con = connect(); PreparedStatement pstmt = con.prepareStatement(query)) {
-            pstmt.setString(1, studentID);
-            pstmt.setString(2, firstName); //BUG! First name = student ID???
-            pstmt.setString(3, lastName);
-            pstmt.setString(4, midtermGrade);
-            int affectedRows = pstmt.executeUpdate();
+        try (Statement statement = con.createStatement())
+        {
+            int affectedRows = statement.executeUpdate(query);
 
-            if (affectedRows > 0) {
+            if (affectedRows > 0)
+            {
                 System.out.println("Record added successfully.");
-                // Optionally, you can refresh the table data here
-                populateTable(con);
-            } else {
+                populateTable(con); //refresh the table data by calling the populateTable method again
+            } else
+            {
                 System.out.println("Failed to add the record.");
             }
-        } catch (SQLException e) {
+        } catch (SQLException e)
+        {
             System.out.println("Error adding record: " + e.getMessage());
         }
     }
 
+    /**
+     * remove method is called when the remove button is clicked in the gui
+     * It gets the student ID from the text field and assigns it to a variable
+     * It then runs an SQL delete statement with the student ID variable
+     * <p>
+     * If the statement is successful, it calls the populateTable method to refresh the table data
+     * If the statement fails, it prints an error message
+     *
+     * @param con The connection to the sql database passed when clicked
+     */
     //remove method
     public void remove(Connection con)
     {
-        System.out.println("remove method called");
+        System.out.println("\nRemoving entry...");
 
         String[] enteredText = getTextFieldValues();
-
         String studentID = enteredText[0];
 
-        //run sql delete statement
-        String query = "DELETE FROM 302_grades WHERE studentID = ?";
+        System.out.println("Student ID Being removed: " + studentID);
 
-        try (PreparedStatement pstmt = con.prepareStatement(query)) {
-            pstmt.setString(1, studentID);
-            int affectedRows = pstmt.executeUpdate();
+        //run SQL delete statement with the entered student ID
+        String query = "DELETE FROM 302_grades WHERE studentID = '" + studentID + "'";
 
-            if (affectedRows > 0) {
+        try (Statement statement = con.createStatement())
+        {
+            int affectedRows = statement.executeUpdate(query);
+
+            if (affectedRows > 0)
+            {
                 System.out.println("Record deleted successfully.");
-                // Optionally, you can refresh the table data here
-                populateTable(con);
-            } else {
+
+                populateTable(con); //refresh the table data
+            } else
+            {
                 System.out.println("No record found with the given student ID.");
             }
-        } catch (SQLException e) {
+        } catch (SQLException e)
+        {
             System.out.println("Error deleting record: " + e.getMessage());
         }
     }
 
+    /**
+     * update method is called when the update button is clicked in the gui
+     * It gets the text from the text fields and assigns them to variables, similar to the add method
+     * It then runs an SQL insert statement with the variables - also including DUPLICATE KEY UPDATE to update the record if it already exists
+     * <p>
+     * If the statement is successful, it calls the populateTable method to refresh the table data
+     * If the statement fails, it prints an error message
+     *
+     * @param con The connection to the sql database passed when clicked
+     */
     //update method
-    public void update()
+    public void update(Connection con)
     {
-        System.out.println("Updating table...");
+        System.out.println("\nUpdating table...");
+
+        String[] enteredText = getTextFieldValues(); //get entered text from text fields in an array
+
+        //assign array values to variables
+        String studentID = enteredText[0];
+        String firstName = enteredText[1];
+        String lastName = enteredText[2];
+        String midtermGrade = enteredText[3];
+
+        //run SQL insert statement with values from the array variables
+        String query = "INSERT INTO 302_grades (studentID, firstName, lastName, midtermGrade) VALUES ('" + studentID + "', '" + firstName + "', '" + lastName + "', '" + midtermGrade + "')" + "ON DUPLICATE KEY UPDATE " + "firstName = '" + firstName + "', " + "lastName = '" + lastName + "', " + "midtermGrade = '" + midtermGrade + "'";
+
+        try (Statement statement = con.createStatement())
+        {
+            int affectedRows = statement.executeUpdate(query);
+
+            if (affectedRows > 0)
+            {
+                System.out.println("Record updated successfully.");
+                populateTable(con); //refresh the table data by calling the populateTable method again
+            } else
+            {
+                System.out.println("Failed to update the record.");
+            }
+        } catch (SQLException e)
+        {
+            System.out.println("Error updating record: " + e.getMessage());
+        }
+
     }
 
+
+    /**
+     * printTable method is called when the print table button is clicked in the gui
+     * It gets the table model and row count
+     * It then prints the table data in a loop
+     *
+     */
     //print table method
     public void printTable()
     {
-        System.out.println("Printing Table...");
+        System.out.println("\nPrinting Table...");
 
         System.out.println("====================");
         //get table model
@@ -186,6 +277,13 @@ public class lab3Boyce
         System.out.println("====================");
     }
 
+    /**
+     * getTextFieldValues method is called by the add, remove, and update methods
+     * It gets the text from the text fields and assigns them to variables
+     * It then returns the variables in an array
+     *
+     * @return String[] An array of the text field values input by the user
+     */
     //get text field values method
     public String[] getTextFieldValues()
     {
@@ -194,13 +292,21 @@ public class lab3Boyce
         String lastName = textField3.getText();
         String midtermGrade = textField4.getText();
 
+        System.out.println("Entry being modified: " + studentID + "," + firstName + "," + lastName + "," + midtermGrade);
+
+
         return new String[]{studentID, firstName, lastName, midtermGrade};
     }
 
-
-
     //sql-----------------------------------------------------------
 
+    /**
+     * connect method is called when the gui is created
+     * It connects to the sql database using the jdbc driver
+     * It then calls the populateTable method to display the table data
+     *
+     * @return Connection The connection to the sql database
+     */
     //connect method
     public Connection connect()
     {
@@ -226,6 +332,13 @@ public class lab3Boyce
         return null;
     }
 
+    /**
+     * populateTable method is called when the gui is created and when the add, remove, and update methods are called
+     * It runs an SQL select statement to get the student ID, first name, last name, and midterm grade from the database
+     * It then populates the table model with the column names and the rows from the result set
+     *
+     * @param con The connection to the sql database passed when clicked
+     */
     //populate table method
     public void populateTable(Connection con)
     {
