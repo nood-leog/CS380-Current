@@ -1,0 +1,53 @@
+Type,Title,Authors,Year,ISBN,CallNumber
+Book,The Great Gatsby,F. Scott Fitzgerald,1925,9780743273565,bk000001
+Book,To Kill a Mockingbird,Harper Lee,1960,9780060935467,bk000002
+Book,1984,George Orwell,1949,9780451524935,bk000003
+Book,Pride and Prejudice,Jane Austen,1813,9780141439518,bk000004
+Book,Moby-Dick,Herman Melville,1851,9781503280786,bk000005
+Book,The Catcher in the Rye,J.D. Salinger,1951,9780316769488,bk000006
+Book,The Hobbit,J.R.R. Tolkien,1937,9780547928227,bk000007
+Book,War and Peace,Leo Tolstoy,1869,9780199232765,bk000008
+Book,The Odyssey,Homer,800 BC,9780140268867,bk000009
+Book,Crime and Punishment,Fyodor Dostoevsky,1866,9780140449136,bk000010
+Book,The Brothers Karamazov,Fyodor Dostoevsky,1880,9780374528379,bk000011
+Book,Jane Eyre,Charlotte Brontë,1847,9780142437209,bk000012
+Book,Wuthering Heights,Emily Brontë,1847,9780141439556,bk000013
+Book,Brave New World,Aldous Huxley,1932,9780060850524,bk000014
+Book,The Scarlet Letter,Nathaniel Hawthorne,1850,9780142437261,bk000015
+Book,Lord of the Flies,William Golding,1954,9780399501487,bk000016
+Book,One Hundred Years of Solitude,Gabriel García Márquez,1967,9780060883287,bk000017
+Book,The Divine Comedy,Dante Alighieri,1320,9780142437223,bk000018
+Book,Ulysses,James Joyce,1922,9780199535675,bk000019
+Book,Les Misérables,Victor Hugo,1862,9780140444308,bk000020
+DVD,Inception,,2010,,dvd000001
+DVD,The Matrix,,1999,,dvd000002
+DVD,The Godfather,,1972,,dvd000003
+DVD,Pulp Fiction,,1994,,dvd000004
+DVD,The Dark Knight,,2008,,dvd000005
+DVD,Fight Club,,1999,,dvd000006
+DVD,Forrest Gump,,1994,,dvd000007
+DVD,The Shawshank Redemption,,1994,,dvd000008
+DVD,Gladiator,,2000,,dvd000009
+DVD,Jurassic Park,,1993,,dvd000010
+DVD,Schindler's List,,1993,,dvd000011
+DVD,The Silence of the Lambs,,1991,,dvd000012
+DVD,The Lord of the Rings: The Fellowship of the Ring,,2001,,dvd000013
+DVD,The Lord of the Rings: The Two Towers,,2002,,dvd000014
+DVD,The Lord of the Rings: The Return of the King,,2003,,dvd000015
+DVD,Star Wars: A New Hope,,1977,,dvd000016
+DVD,Star Wars: The Empire Strikes Back,,1980,,dvd000017
+DVD,Star Wars: Return of the Jedi,,1983,,dvd000018
+DVD,Back to the Future,,1985,,dvd000019
+DVD,The Terminator,,1984,,dvd000020
+DVD,The Lion King,,1994,,dvd000021
+DVD,The Little Mermaid,,1989,,dvd000022
+DVD,Beauty and the Beast,,1991,,dvd000023
+DVD,Aladdin,,1992,,dvd000024
+DVD,Toy Story,,1995,,dvd000025
+Book,The Picture of Dorian Gray,Oscar Wilde,1890,9780141439570,bk000021
+Book,The Count of Monte Cristo,Alexandre Dumas,1844,9780140449266,bk000022
+Book,The Iliad,Homer,800 BC,9780140275360,bk000023
+Book,The Aeneid,Virgil,19 BC,9780140449327,bk000024
+Book,The Republic,Plato,380 BC,9780140455113,bk000025
+Book,The Art of War,Sun Tzu,5th century BC,9781590302255,bk000026
+Book,The Prince,Niccolò Machiavelli,1532,9780140449150,bk000027
