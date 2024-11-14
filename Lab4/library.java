@@ -4,6 +4,15 @@
 //!!! IMPORTANT !!!
 //to test the program, run 'test'
 
+
+/**
+ *  Create a library inventory management system that allows users to add, remove, and search for books and DVDs in the library inventory.
+ *  Users can also check out and return books and DVDs.
+ *  @author Alex Boyce
+ *  @since 2024-11-13
+ *
+ **/
+
 import java.util.Scanner;
 
 class library extends dataHandler
@@ -17,7 +26,11 @@ class library extends dataHandler
     //dataHandler object
     dataHandler dH = new dataHandler();
 
-
+    /**
+     *  Constructor for Library inventory management system that allows users to add, remove, and search for books and DVDs in the library inventory.
+     *  Takes user input and calls the appropriate method based on the command entered.
+     *
+     **/
     //library constructor
     public library()
     {
@@ -49,39 +62,44 @@ class library extends dataHandler
                 case "test": //run a test of the functions of the program
                     test();
                     break;
-                case "checkout":
+                case "checkout": //check out a book or DVD
                     checkout(argument);
                     break;
-                case "return":
+                case "return": //return a book or DVD
                     returnItem(argument);
                     break;
-                case "info":
+                case "info": //display information about a book or DVD
                     info(argument);
                     break;
-                case "search":
+                case "search": //search for a book or DVD
                     search(argument);
                     break;
-                case "add":
+                case "add": //add a book or DVD to the library inventory
                     add(argument);
                     break;
-                case "remove":
+                case "remove": //remove a book or DVD from the library inventory
                     remove(argument);
                     break;
-                case "booklist":
+                case "booklist": //display a list of all books in the library inventory
                     booklist();
                     break;
-                case "dvdlist":
+                case "dvdlist": //display a list of all DVDs in the library inventory
                     dvdlist();
                     break;
-                case "checkoutlist":
+                case "checkoutlist": //display a list of all checked out books and DVDs
                     checkoutlist();
                     break;
                 default:
-                    System.out.println("Invalid command. Type 'help' for a list of commands and usage.");
+                    System.out.println("Invalid command. Type 'help' for a list of commands and usage."); //display error message if no valid command is entered
                     break;
             }
         }
     }
+
+    /**
+     * Quit method exits the program as expected (0)
+     * called from the constructor when the user enters the 'quit' command
+     * **/
 
     //quit method
     public void quit() {
@@ -89,8 +107,14 @@ class library extends dataHandler
         System.exit(0);
     }
 
-    //help method
-    public void help() {
+
+    /**
+     * Help method displays a list of commands and available programs
+     * called from the constructor when the user enters the 'help' command
+     */
+ //help method
+    public void help()
+    {
         System.out.println("""
                 Available commands:
                 quit - quit the program
@@ -108,6 +132,17 @@ class library extends dataHandler
                 """);
     }
 
+    /**
+     * checkout method checks out a book or DVD by adding a record to the checkout.csv file
+     * called from the constructor when the user enters the 'checkout' command
+     * calls the handleCheckout method from the dataHandler class to check out the book or DVD
+     *
+     * @param argument the call number and student ID of the book or DVD to check out
+     *                 Usage: checkout <callNumber> <studentID>
+     *                 Example: checkout bk1007456 STU1073948
+     *                 Example: checkout dvd200456 STU1073948
+     *
+     * **/
     //checkout method
     public void checkout(String argument)
     {
@@ -139,11 +174,19 @@ class library extends dataHandler
                 System.out.println("Checkout successful.");
 
             }
-
         }
-
-
     }
+
+    /**
+     * returnItem method returns a book or DVD by removing the record from the checkout.csv file
+     * called from the constructor when the user enters the 'return' command
+     * calls the handleReturn method from the dataHandler class to return the book or DVD
+     *
+     * @param argument the call number of the book or DVD to return
+     *                 Usage: return <callNumber>
+     *                 Example: return bk1007456
+     *                 Example: return dvd200456
+     * **/
 
     //return method
     public void returnItem(String argument)
@@ -163,6 +206,17 @@ class library extends dataHandler
         }
     }
 
+    /**
+     * info method displays information about a book or DVD
+     * called from the constructor when the user enters the 'info' command
+     * calls the handleInfo method from the dataHandler class to display information about the book or DVD
+     *
+     * @param argument the call number of the book or DVD to display information about
+     *                 Usage: info <callNumber>
+     *                 Example: info bk1007456
+     *                 Example: info dvd200456
+     * **/
+
     //info method
     public void info(String argument)
     {
@@ -179,6 +233,17 @@ class library extends dataHandler
             dH.handleInfo(argument);
         }
     }
+
+    /**
+     * search method searches for a book or DVD by title or author
+     * called from the constructor when the user enters the 'search' command
+     * calls the handleSearch method from the dataHandler class to search for the book or DVD
+     *
+     * @param argument the keyword to search for
+     *                 Usage: search <keyword>
+     *                 Example: search testBook
+     *                 Example: search testAuthor
+     * **/
 
     //search method
     public void search(String argument)
@@ -198,6 +263,17 @@ class library extends dataHandler
         }
     }
 
+    /**
+     * add method adds a book or DVD to the library inventory
+     * called from the constructor when the user enters the 'add' command
+     * calls the handleAddBook or handleAddDVD method from the dataHandler class to add the book or DVD
+     *
+     * @param argument the type of item, call number, title, author, year, and ISBN for a book or call number, title, and year for a DVD
+     *                 Usage for Books: add book <callNumber> <title> <author> <year> <ISBN>
+     *                 Usage for DVDs: add dvd <callNumber> <title> <year>
+     *                 Example: add book bk1007456 testBook testAuthor 2024 9780743273565
+     *                 Example: add dvd dvd200456 testDVD 2024
+     * **/
     //add method
     public void add(String argument)
     {
@@ -266,6 +342,18 @@ class library extends dataHandler
         }
     }
 
+
+
+    /**
+     * remove method removes a book or DVD from the library inventory
+     * called from the constructor when the user enters the 'remove' command
+     * calls the handleRemove method from the dataHandler class to remove the book or DVD
+     *
+     * @param argument the call number of the book or DVD to remove
+     *                 Usage: remove <callNumber>
+     *                 Example: remove bk1007456
+     *                 Example: remove dvd200456
+     * **/
     //remove method
     public void remove(String argument)
     {
@@ -284,6 +372,12 @@ class library extends dataHandler
         }
     }
 
+    /**
+     * booklist method displays a list of all books in the library inventory
+     * called from the constructor when the user enters the 'booklist' command
+     * calls the getBookList method from the dataHandler class to display the list of books
+     * **/
+
     //booklist method
     public void booklist()
     {
@@ -292,6 +386,12 @@ class library extends dataHandler
         getBookList();
         System.out.println("============================");
     }
+
+    /**
+     * dvdlist method displays a list of all DVDs in the library inventory
+     * called from the constructor when the user enters the 'dvdlist' command
+     * calls the getDVDList method from the dataHandler class to display the list of DVDs
+     * **/
 
     //dvdlist method
     public void dvdlist()
@@ -302,6 +402,12 @@ class library extends dataHandler
         System.out.println("============================");
     }
 
+    /**
+     * checkoutlist method displays a list of all checked out books and DVDs
+     * called from the constructor when the user enters the 'checkoutlist' command
+     * calls the getCheckoutList method from the dataHandler class to display the list of checked out books and DVDs
+     * **/
+
     //checkoutlist method
     public void checkoutlist()
     {
@@ -310,6 +416,12 @@ class library extends dataHandler
         getCheckoutList();
         System.out.println("============================");
     }
+
+    /**
+     * test method runs a test of the functions of the program
+     * called from the constructor when the user enters the 'test' command
+     * calls the add, checkout, info, booklist, dvdlist, checkoutlist, search, and return methods to test the program
+     * **/
 
     //test method
     public void test()
@@ -367,6 +479,5 @@ class library extends dataHandler
         System.out.println("Test complete.");
         System.out.println("============================");
     }
-
 
 }

@@ -3,27 +3,41 @@ import java.io.*;
 import java.util.Scanner;
 
 
+/**
+ * dataHandler class - handles all data manipulation for the library system
+ * This class contains methods to:
+ * - handleCheckout: add a book or DVD to the checkout.csv file
+ * - handleReturn: remove a book or DVD from the checkout.csv file
+ * - handleInfo: display information about a book or DVD
+ * - handleSearch: search for a book or DVD based off a keyword
+ * - handleAddDVD: add a DVD to the library.csv file
+ * - handleAddBook: add a book to the library.csv file
+ * - handleRemove: remove a book or DVD from the library.csv file
+ * - getBookList: display a list of all books in the library
+ * - getDVDList: display a list of all DVDs in the library
+ * - getCheckoutList: display a list of all books and DVDs that have been checked out
+ *
+ *  @author Alex Boyce
+ *  @since 2024-11-13
+ * **/
+
 class dataHandler
 {
-    //add to checkout.csv with checkout command - passed callNumber and studentID
-    //remove from checkout.csv with return command - passed callNumber
-    //list info about a book or DVD with info command - passed callNumber
 
      public dataHandler()
      {
         //constructor
      }
 
-    //handleCheckout
-    //handleReturn
-    //handleInfo
-    //handleSearch
-    //handleAdd
-    //handleRemove
-    //handleBookList
-    //handleDVDList
-    //handleCheckoutList
 
+     /**
+      * handleCheckout - add a book or DVD to the checkout.csv file
+      * called from the checkout method in the library class
+      *
+      * @param callNumber - the call number of the book or DVD to be checked out
+      * @param studentID - the student ID of the student checking out the book or DVD
+      *
+      * **/
 
     //handleCheckout
     public void handleCheckout(String callNumber, String studentID)
@@ -40,6 +54,14 @@ class dataHandler
 
         }
     }
+
+    /**
+     * handleReturn - remove a book or DVD from the checkout.csv file
+     * called from the returnItem method in the library class
+     *
+     * @param callNumber - the call number of the book or DVD to be returned
+     *
+     * **/
 
     //handleReturn
     public void handleReturn(String callNumber)
@@ -95,6 +117,14 @@ class dataHandler
             System.out.println("An error occurred.");
         }
     }
+
+    /**
+     * handleInfo - display information about a book or DVD
+     * called from the info method in the library class
+     *
+     * @param callNumber - the call number of the book or DVD to display information about
+     *
+     * **/
 
     //handleInfo - display information about a book or DVD
     public void handleInfo(String callNumber)
@@ -152,6 +182,14 @@ class dataHandler
             System.out.println("An error occurred.");
         }
     }
+
+    /**
+     * handleSearch - search for a book or DVD based off a keyword
+     * called from the search method in the library class
+     *
+     * @param keyword - the keyword to search for
+     *
+     * **/
 
     //handleSearch - search for a book or DVD based off a keyword
     public void handleSearch(String keyword)
@@ -214,6 +252,14 @@ class dataHandler
         }
     }
 
+    /**
+     * handleAddDVD - add a DVD to the library.csv file
+     * called from the addDVD method in the library class
+     *
+     * @param callNumber - the call number of the DVD
+     **/
+
+
     //handleAddDVD
     //test with: add dvd dvd111111 The_Great_Gatsby_2 2045
     public void handleAddDVD(String callNumber, String title, String year) {
@@ -227,6 +273,17 @@ class dataHandler
         }
 
     }
+
+    /**
+     * handleAddBook - add a book to the library.csv file
+     * called from the addBook method in the library class
+     *
+     * @param callNumber - the call number of the book
+     * @param title - the title of the book
+     * @param author - the author of the book
+     * @param year - the publication year of the book
+     * @param ISBN - the ISBN of the book
+     */
 
     //handleAddBook
     //test with: add book bk111111 The_Great_Gatsby_2 Scott_Fitzgerald_IV 2045 9782343373665
@@ -243,6 +300,13 @@ class dataHandler
         }
     }
 
+    /**
+     * handleRemove - remove a book or DVD from the library.csv file
+     * called from the removeItem method in the library class
+     *
+     * @param callNumber - the call number of the book or DVD to be removed
+     *
+     * **/
     //handleRemove -- the same as handleReturn, but for library.csv
     public void handleRemove(String callNumber)
     {
@@ -307,6 +371,11 @@ class dataHandler
     }
 
 
+    /**
+     * getBookList - display a list of all books in the library
+     * called from the listBooks method in the library class
+     *
+     * **/
     //getBookList
     public void getBookList()
     {
@@ -345,6 +414,10 @@ class dataHandler
         }
     }
 
+    /**
+     * getDVDList - display a list of all DVDs in the library
+     * called from the listDVDs method in the library class
+     * **/
 
     //getDVDList
     public void getDVDList()
@@ -381,6 +454,11 @@ class dataHandler
             System.out.println("An error occurred.");
         }
     }
+
+    /**
+     * getCheckoutList - display a list of all books and DVDs that have been checked out
+     * called from the listCheckedOut method in the library class
+     **/
 
     //getCheckoutList
     public void getCheckoutList()
